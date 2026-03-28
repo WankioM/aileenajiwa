@@ -16,7 +16,7 @@ export default function GalleryPage() {
     <>
       <Navbar />
       <main className="min-h-screen pt-20">
-        {/* Existing photo grid + lightbox + Drive CTA */}
+        {/* Photo grid + lightbox + general upload CTA */}
         <Gallery />
 
         {/* FEMNet tribute gallery */}
