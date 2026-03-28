@@ -6,3 +6,4 @@ MPESA_CONSUMER_KEY=tGHWtR53cry0xFVFxz3D7nj4FQU33YHKBOLlXbAhATLKDR1X
 MPESA_CONSUMER_SECRET=mWYsbZbacqQA12BmueKFHaASkYtchyB48AgJQo8FM2l83AXED8JyILuSb7AL5IAF
 MPESA_SHORTCODE=174379
 MPESA_PASSKEY=
+MONGO_URI=mongodb+srv://tracywankio29_db_user:tracywankio29_db_user@cluster0.wcmptbd.mongodb.net/?appName=Cluster0

@@ -1,44 +1,35 @@
-import fs from "fs";
-import path from "path";
+import mongoose from "mongoose";
 
-const DB_PATH = path.join(__dirname, "db.json");
+const MONGO_URI = process.env.MONGO_URI || "";
 
-export interface Tribute {
-  id: string;
-  name: string;
-  message: string;
-  createdAt: string;
-}
-
-export interface Payment {
-  id: string;
-  phone: string;
-  name: string;
-  amount: number;
-  mpesaRef: string;
-  status: "pending" | "completed" | "failed";
-  createdAt: string;
-}
-
-interface DB {
-  tributes: Tribute[];
-  payments: Payment[];
-  totalRaised: number;
-}
-
-function read(): DB {
+export async function connectDB() {
   try {
-    const raw = fs.readFileSync(DB_PATH, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    const empty: DB = { tributes: [], payments: [], totalRaised: 0 };
-    write(empty);
-    return empty;
+    await mongoose.connect(MONGO_URI);
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    process.exit(1);
   }
 }
 
-function write(data: DB) {
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-}
+// ── Tribute ──
+const tributeSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  relationship: { type: String, default: "" },
+  message: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+});
 
-export const db = { read, write };
+export const Tribute = mongoose.model("Tribute", tributeSchema);
+
+// ── Payment ──
+const paymentSchema = new mongoose.Schema({
+  phone: { type: String, required: true },
+  name: { type: String, default: "Anonymous" },
+  amount: { type: Number, required: true },
+  mpesaRef: { type: String, default: "" },
+  status: { type: String, enum: ["pending", "completed", "failed"], default: "pending" },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export const Payment = mongoose.model("Payment", paymentSchema);

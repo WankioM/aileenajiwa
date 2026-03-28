@@ -1,35 +1,36 @@
 import { Router } from "express";
-import { randomUUID } from "crypto";
-import { db } from "../db";
+import { Tribute } from "../db";
 
 const router = Router();
 
-// GET all tributes
-router.get("/", (_req, res) => {
-  const data = db.read();
-  res.json(data.tributes);
+// GET all tributes (newest first)
+router.get("/", async (_req, res) => {
+  try {
+    const tributes = await Tribute.find().sort({ createdAt: -1 });
+    res.json(tributes);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch tributes" });
+  }
 });
 
 // POST new tribute
-router.post("/", (req, res) => {
-  const { name, message } = req.body;
+router.post("/", async (req, res) => {
+  const { name, relationship, message } = req.body;
 
   if (!name || !message) {
     return res.status(400).json({ error: "Name and message are required" });
   }
 
-  const tribute = {
-    id: randomUUID(),
-    name: name.trim(),
-    message: message.trim(),
-    createdAt: new Date().toISOString(),
-  };
-
-  const data = db.read();
-  data.tributes.unshift(tribute); // newest first
-  db.write(data);
-
-  res.status(201).json(tribute);
+  try {
+    const tribute = await Tribute.create({
+      name: name.trim(),
+      relationship: relationship?.trim() || "",
+      message: message.trim(),
+    });
+    res.status(201).json(tribute);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to save tribute" });
+  }
 });
 
 export default router;

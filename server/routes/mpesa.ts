@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { randomUUID } from "crypto";
-import { db } from "../db";
+import { Payment } from "../db";
 
 const router = Router();
 
@@ -12,7 +11,6 @@ router.post("/stkpush", async (req, res) => {
     return res.status(400).json({ error: "Phone and amount are required" });
   }
 
-  // Normalize phone: 07XX → 2547XX
   let normalized = phone.replace(/\s+/g, "").replace(/[^0-9]/g, "");
   if (normalized.startsWith("0")) normalized = "254" + normalized.slice(1);
 
@@ -25,64 +23,59 @@ router.post("/stkpush", async (req, res) => {
     return res.status(400).json({ error: "Amount must be between 1 and 300,000" });
   }
 
-  const payment = {
-    id: randomUUID(),
-    phone: normalized,
-    name: (name || "Anonymous").trim(),
-    amount: numAmount,
-    mpesaRef: "",
-    status: "pending" as const,
-    createdAt: new Date().toISOString(),
-  };
+  try {
+    const payment = await Payment.create({
+      phone: normalized,
+      name: (name || "Anonymous").trim(),
+      amount: numAmount,
+    });
 
-  const data = db.read();
-  data.payments.push(payment);
-  db.write(data);
+    // ── DARAJA API (uncomment when you have credentials) ──
+    //
+    // const token = await getAccessToken();
+    // const timestamp = getTimestamp();
+    // const password = Buffer.from(
+    //   `${process.env.MPESA_SHORTCODE}${process.env.MPESA_PASSKEY}${timestamp}`
+    // ).toString("base64");
+    //
+    // const stkRes = await fetch(
+    //   "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       BusinessShortCode: process.env.MPESA_SHORTCODE,
+    //       Password: password,
+    //       Timestamp: timestamp,
+    //       TransactionType: "CustomerPayBillOnline",
+    //       Amount: numAmount,
+    //       PartyA: normalized,
+    //       PartyB: process.env.MPESA_SHORTCODE,
+    //       PhoneNumber: normalized,
+    //       CallBackURL: `${process.env.BASE_URL}/api/mpesa/callback`,
+    //       AccountReference: "AileenSendoff",
+    //       TransactionDesc: "Contribution for Aileen Owango send-off",
+    //     }),
+    //   }
+    // );
+    //
+    // const stkData = await stkRes.json();
+    // return res.json({ paymentId: payment._id, ...stkData });
 
-  // ── DARAJA API (uncomment when you have credentials) ──
-  //
-  // const token = await getAccessToken();
-  // const timestamp = getTimestamp();
-  // const password = Buffer.from(
-  //   `${process.env.MPESA_SHORTCODE}${process.env.MPESA_PASSKEY}${timestamp}`
-  // ).toString("base64");
-  //
-  // const stkRes = await fetch(
-  //   "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest",
-  //   {
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       BusinessShortCode: process.env.MPESA_SHORTCODE,
-  //       Password: password,
-  //       Timestamp: timestamp,
-  //       TransactionType: "CustomerPayBillOnline",
-  //       Amount: numAmount,
-  //       PartyA: normalized,
-  //       PartyB: process.env.MPESA_SHORTCODE,
-  //       PhoneNumber: normalized,
-  //       CallBackURL: `${process.env.BASE_URL}/api/mpesa/callback`,
-  //       AccountReference: "AileenSendoff",
-  //       TransactionDesc: "Contribution for Aileen Owango send-off",
-  //     }),
-  //   }
-  // );
-  //
-  // const stkData = await stkRes.json();
-  // return res.json({ paymentId: payment.id, ...stkData });
-
-  // ── MOCK RESPONSE (remove when using Daraja) ──
-  res.json({
-    paymentId: payment.id,
-    message: "STK push sent (mock). In production, check your phone.",
-  });
+    res.json({
+      paymentId: payment._id,
+      message: "STK push sent (mock). In production, check your phone.",
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to create payment" });
+  }
 });
 
 // ─── M-Pesa Callback (Daraja posts here after payment) ───
-router.post("/callback", (req, res) => {
+router.post("/callback", async (req, res) => {
   const body = req.body?.Body?.stkCallback;
 
   if (!body) {
@@ -90,81 +83,92 @@ router.post("/callback", (req, res) => {
   }
 
   const resultCode = body.ResultCode;
-  const checkoutId = body.CheckoutRequestID;
-
-  const data = db.read();
 
   if (resultCode === 0) {
-    // Payment successful — extract M-Pesa ref
     const items = body.CallbackMetadata?.Item || [];
     const mpesaRef =
-      items.find((i: any) => i.Name === "MpesaReceiptNumber")?.Value || "";
+      items.find((i: { Name: string; Value: string }) => i.Name === "MpesaReceiptNumber")?.Value || "";
     const paidAmount =
-      items.find((i: any) => i.Name === "Amount")?.Value || 0;
+      items.find((i: { Name: string; Value: number }) => i.Name === "Amount")?.Value || 0;
 
-    // Find the pending payment and update it
-    const payment = data.payments.find((p) => p.status === "pending");
-    if (payment) {
-      payment.status = "completed";
-      payment.mpesaRef = mpesaRef;
-      data.totalRaised += Number(paidAmount);
-      db.write(data);
-    }
+    await Payment.findOneAndUpdate(
+      { status: "pending" },
+      { status: "completed", mpesaRef, amount: paidAmount },
+      { sort: { createdAt: -1 } }
+    );
   } else {
-    // Payment failed
-    const payment = data.payments.find((p) => p.status === "pending");
-    if (payment) {
-      payment.status = "failed";
-      db.write(data);
-    }
+    await Payment.findOneAndUpdate(
+      { status: "pending" },
+      { status: "failed" },
+      { sort: { createdAt: -1 } }
+    );
   }
 
   res.json({ ResultCode: 0, ResultDesc: "Accepted" });
 });
 
-// ─── Simulate payment completion (for testing without Daraja) ─
-router.post("/simulate/:paymentId", (req, res) => {
+// ─── Simulate payment completion (for testing) ───────────
+router.post("/simulate/:paymentId", async (req, res) => {
   const { paymentId } = req.params;
-  const data = db.read();
 
-  const payment = data.payments.find((p) => p.id === paymentId);
-  if (!payment) {
-    return res.status(404).json({ error: "Payment not found" });
+  try {
+    const payment = await Payment.findByIdAndUpdate(
+      paymentId,
+      {
+        status: "completed",
+        mpesaRef: "MOCK" + Date.now().toString(36).toUpperCase(),
+      },
+      { new: true }
+    );
+
+    if (!payment) {
+      return res.status(404).json({ error: "Payment not found" });
+    }
+
+    const totalRaised = await getTotal();
+    res.json({ payment, totalRaised });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to simulate payment" });
   }
-
-  payment.status = "completed";
-  payment.mpesaRef = "MOCK" + Date.now().toString(36).toUpperCase();
-  data.totalRaised += payment.amount;
-  db.write(data);
-
-  res.json({ payment, totalRaised: data.totalRaised });
 });
 
 // ─── Get fundraising totals ──────────────────────────────
-router.get("/total", (_req, res) => {
-  const data = db.read();
-  const completed = data.payments.filter((p) => p.status === "completed");
-  res.json({
-    totalRaised: data.totalRaised,
-    goal: 1200000,
-    transactionCount: completed.length,
-  });
+router.get("/total", async (_req, res) => {
+  try {
+    const totalRaised = await getTotal();
+    const count = await Payment.countDocuments({ status: "completed" });
+    res.json({ totalRaised, goal: 1200000, transactionCount: count });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to get totals" });
+  }
 });
 
 // ─── Get all payments ────────────────────────────────────
-router.get("/payments", (_req, res) => {
-  const data = db.read();
-  // Return payments but mask phone numbers for privacy
-  const safe = data.payments.map((p) => ({
-    id: p.id,
-    name: p.name,
-    amount: p.amount,
-    status: p.status,
-    phone: p.phone.slice(0, 6) + "***" + p.phone.slice(-2),
-    createdAt: p.createdAt,
-  }));
-  res.json(safe);
+router.get("/payments", async (_req, res) => {
+  try {
+    const payments = await Payment.find().sort({ createdAt: -1 });
+    const safe = payments.map((p) => ({
+      id: p._id,
+      name: p.name,
+      amount: p.amount,
+      status: p.status,
+      phone: p.phone.slice(0, 6) + "***" + p.phone.slice(-2),
+      createdAt: p.createdAt,
+    }));
+    res.json(safe);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to get payments" });
+  }
 });
+
+// ─── Helper: sum completed payments ──────────────────────
+async function getTotal(): Promise<number> {
+  const result = await Payment.aggregate([
+    { $match: { status: "completed" } },
+    { $group: { _id: null, total: { $sum: "$amount" } } },
+  ]);
+  return result[0]?.total || 0;
+}
 
 // ─── Daraja helpers (uncomment when ready) ───────────────
 //
