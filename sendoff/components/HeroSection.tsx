@@ -56,7 +56,7 @@ export default function HeroSection() {
       <div className="flex justify-center mb-10">
         <div className="border-2 border-warm-900 bg-white p-1">
           <Image
-            src="/images/aileen1.jpg"
+            src="/images/aileen2.jpg"
             alt="Aileen Owango"
             width={280}
             height={350}
