@@ -24,6 +24,12 @@ const photos = [
   
   { src: "/images/aileen10.jpeg", alt: "Aileen Owango" },
   { src: "/images/aileen4.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen10.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen11.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen12.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen13.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen14.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen15.jpeg", alt: "Aileen Owango" },
 ];
 
 export default function Gallery() {
