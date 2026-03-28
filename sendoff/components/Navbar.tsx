@@ -6,10 +6,9 @@ import { useState } from "react";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/agenda", label: "Contributions" },
+  { href: "/agenda", label: "Agenda" },
   { href: "/tributes", label: "Tributes" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/rsvp", label: "RSVP" },
 ];
 
 export default function Navbar() {

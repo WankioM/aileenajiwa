@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const EVENT = new Date("2026-03-31T17:00:00+03:00");
+const EVENT = new Date("2026-04-03T09:00:00+03:00");
 
 function getTimeLeft() {
   const d = EVENT.getTime() - Date.now();
@@ -67,10 +67,10 @@ export default function HeroSection() {
       </div>
 
       <p className="font-body text-warm-300 leading-relaxed max-w-lg mx-auto mb-8">
-        We are fundraising to support the funeral and final send-off of our
-        beloved Aileen Ajiwa. Please join us as we come together to honor and
-        celebrate her life, remembering her warmth, her laughter, and the light
-        she brought into all our lives.
+        There are people who survive hardship, and then there are people like Aileen who survive it, and then turn around and carry everyone else through it too. She was brave without announcement, kind without condition, and when something was wrong, she said so. Clearly, firmly, and with love. At work, she fought for justice  not because it was her job, but because it was her nature.
+      </p>
+      <p className="font-body text-warm-300 leading-relaxed max-w-lg mx-auto mb-8">
+        She was truly the embodiment of her mother, the late Caroline. She was not finished  but then, the ones who burn the brightest rarely are. She is gone too soon, and she is loved beyond measure.
       </p>
 
       <div className="w-full h-px bg-warm-900 mb-8" />
@@ -78,10 +78,10 @@ export default function HeroSection() {
       {/* Event details */}
       <div className="flex justify-center gap-8 md:gap-12 flex-wrap mb-8">
         {[
-          { label: "Venue", value: "All Saints Cathedral" },
-          { label: "Date", value: "31st March, 2026" },
-          { label: "Time", value: "5:00 P.M." },
-        ].map((d) => (
+  { label: "Venue", value: "Nyakach" },
+  { label: "Date", value: "3rd April, 2026" },
+  { label: "Time", value: "Morning" },
+].map((d) => (
           <div key={d.label} className="flex flex-col items-center">
             <span className="text-xs uppercase tracking-[0.15em] text-warm-300 font-body">
               {d.label}

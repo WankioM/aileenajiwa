@@ -34,8 +34,8 @@
 
 /* --- Tailwind v4 Theme --- */
 @theme {
-  --color-warm-50: #F5F2EF;
-  --color-warm-100: #E8E3DE;
+  --color-warm-50: #FAFAFA;;
+  --color-warm-100:  #F5F5F5;
   --color-warm-200: #D4CFC9;
   --color-warm-300: #7A7A7A;
   --color-warm-900: #1A1A1A;
@@ -68,6 +68,6 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Aileron', system-ui, sans-serif;
-  background-color: #E8E3DE;
+  background-color: #FAFAFA;;
   color: #1A1A1A;
 }
