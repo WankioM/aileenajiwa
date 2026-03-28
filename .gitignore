@@ -1,0 +1,14 @@
+# Server
+server/node_modules/
+server/dist/
+server/.env
+server/db.json
+
+# Next.js
+sendoff/node_modules/
+sendoff/.next/
+sendoff/.env
+
+# General
+*.log
+.DS_Store
