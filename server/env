@@ -1,5 +1,6 @@
 PORT=5000
 BASE_URL=http://localhost:5000
+NEXT_PUBLIC_API_URL=https://aileenajiwa-production.up.railway.app
 
 # M-Pesa Daraja (fill in after registering at developer.safaricom.co.ke)
 MPESA_CONSUMER_KEY=tGHWtR53cry0xFVFxz3D7nj4FQU33YHKBOLlXbAhATLKDR1X

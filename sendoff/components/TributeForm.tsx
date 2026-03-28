@@ -10,6 +10,7 @@ interface TributeFormProps {
 
 export default function TributeForm({ onSubmitted }: TributeFormProps) {
   const [name, setName] = useState("");
+  const [relationship, setRelationship] = useState("");
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
@@ -26,12 +27,17 @@ export default function TributeForm({ onSubmitted }: TributeFormProps) {
       const res = await fetch(`${API}/api/tributes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), message: message.trim() }),
+        body: JSON.stringify({
+          name: name.trim(),
+          relationship: relationship.trim(),
+          message: message.trim(),
+        }),
       });
 
       if (!res.ok) throw new Error("Failed to submit");
 
       setName("");
+      setRelationship("");
       setMessage("");
       setDone(true);
       onSubmitted?.();
@@ -70,6 +76,23 @@ export default function TributeForm({ onSubmitted }: TributeFormProps) {
           />
         </div>
 
+        {/* Relationship */}
+        <div className="flex flex-col gap-1">
+          <label className="text-xs uppercase tracking-widest text-warm-300 font-bold font-body">
+            Relationship <span className="normal-case tracking-normal text-warm-200">(optional)</span>
+          </label>
+          <input
+            type="text"
+            placeholder="e.g. Cousin, Friend, Colleague"
+            value={relationship}
+            onChange={(e) => setRelationship(e.target.value)}
+            maxLength={50}
+            className="font-body text-base px-4 py-3 border border-warm-200 rounded-lg bg-warm-50 text-warm-900
+              outline-none focus:border-lavender-400 focus:ring-2 focus:ring-lavender-400/30 transition-all
+              placeholder:text-warm-300"
+          />
+        </div>
+
         {/* Message */}
         <div className="flex flex-col gap-1">
           <label className="text-xs uppercase tracking-widest text-warm-300 font-bold font-body">
@@ -94,7 +117,7 @@ export default function TributeForm({ onSubmitted }: TributeFormProps) {
           onClick={handleSubmit}
           disabled={!name.trim() || !message.trim() || sending}
           className="bg-lavender-400 text-white py-3 rounded-lg font-body font-bold text-sm uppercase tracking-wider
-            hover:bg-lavender-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            hover:bg-lavender-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {sending ? "Submitting..." : "Submit Tribute"}
         </button>

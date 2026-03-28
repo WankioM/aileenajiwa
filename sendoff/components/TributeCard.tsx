@@ -1,6 +1,7 @@
 export interface Tribute {
-  id: string;
+  _id: string;
   name: string;
+  relationship?: string;
   message: string;
   createdAt: string;
 }
@@ -29,6 +30,9 @@ export default function TributeCard({ tribute }: { tribute: Tribute }) {
           <p className="font-body font-bold text-warm-900 text-sm">
             {tribute.name}
           </p>
+          {tribute.relationship && (
+            <p className="font-body text-xs text-lavender-400">{tribute.relationship}</p>
+          )}
           <p className="font-body text-xs text-warm-300">{date}</p>
         </div>
       </div>
