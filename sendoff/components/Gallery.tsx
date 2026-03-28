@@ -18,13 +18,15 @@ const photos = [
   { src: "/images/aileen3.jpg", alt: "Aileen Owango" },
   
   { src: "/images/aileen5.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen16.jpeg", alt: "Aileen Owango" },
   { src: "/images/aileen6.jpeg", alt: "Aileen Owango" },
   { src: "/images/aileen7.jpeg", alt: "Aileen Owango" },
+  { src: "/images/aileen17.jpeg", alt: "Aileen Owango" },
   { src: "/images/aileen8.jpeg", alt: "Aileen Owango" },
   
   { src: "/images/aileen10.jpeg", alt: "Aileen Owango" },
   { src: "/images/aileen4.jpeg", alt: "Aileen Owango" },
-  { src: "/images/aileen10.jpeg", alt: "Aileen Owango" },
+  
   { src: "/images/aileen11.jpeg", alt: "Aileen Owango" },
   { src: "/images/aileen12.jpeg", alt: "Aileen Owango" },
   { src: "/images/aileen13.jpeg", alt: "Aileen Owango" },
