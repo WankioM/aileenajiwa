@@ -57,7 +57,7 @@ const EVENTS: EventItem[] = [
   {
     id: 'burial',
     date: 'April 3, 2026',
-    day: 'Thursday',
+    day: 'Friday',
     title: 'Burial & Final Send-Off',
     venue: 'Nyakach',
     time: 'Morning',
