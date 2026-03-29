@@ -43,7 +43,7 @@ export default function Footer() {
               Fundraising Goal
             </p>
             <p className="text-lg font-bold text-lavender-400 font-body">
-              KES 1,200,000
+              KES 1,500,000
             </p>
             <p className="text-sm text-warm-300 font-body">Every shilling counts</p>
           </div>
