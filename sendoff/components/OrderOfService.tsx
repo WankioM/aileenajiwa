@@ -41,6 +41,238 @@ interface Hymn {
 }
 
 const HYMNS: Hymn[] = [
+   {
+    id: 'mchungaji',
+    title: 'Bwana Ni Mchungaji Wangu',
+    artist: 'Reuben Kigame',
+    lyrics: `Bwana ni mchungaji wangu
+Sitapungukiwa kitu
+Hunilaza kwenye majani mabichi
+Hunongoza kwa maji matulivu
+Hunihuisha nafsi yangu
+Huniongoza kwa njia za haki
+Nipitapo bondeni mwa mauti
+Sitaogopa wewe u nami
+Hakika wema nazo fadhili
+Zitanifuata mimi
+Nitakaa nyumbani mwa bwana
+Siku zote za maisha yangu
+Hakika wema nazo fadhili
+Zitanifuata mimi
+Nitakaa nyumbani mwa bwana
+Siku zote za maisha yangu
+Gongo lako na fimbo yako
+Vinanifariji mimi
+Waandaa meza mbele yangu
+Machoni pa watesi wangu
+Hakika wema nazo fadhili
+Zitanifuata mimi
+Nitakaa nyumbani mwa bwana
+Siku zote za maisha yangu
+Hakika wema nazo fadhili
+Zitanifuata mimi
+Nitakaa nyumbani mwa bwana
+Siku zote za maisha yangu
+Hakika wema nazo fadhili
+Zitanifuata mimi
+Nitakaa nyumbani mwa bwana
+Siku zote za maisha yangu
+Nitakaa nyumbani mwa bwana
+Siku zote za maisha yangu
+Nitakaa nyumbani mwa bwana...`, 
+  },
+   {
+    id: 'well',
+    title: 'It Is Well (With My Soul)',
+    artist: 'Horatio Spafford / Philip Bliss',
+    lyrics: `When peace like a river, attendeth my way
+When sorrows like sea billows roll
+Whatever my lot, thou hast taught me to say
+It is well, it is well, with my soul
+It is well
+With my soul
+It is well, it is well with my soul
+Though Satan should buffet, though trials should come
+Let this blest assurance control
+That Christ has regarded my helpless estate
+And hath shed His own blood for my soul
+It is well (it is well)
+With my soul (with my soul)
+It is well, it is well with my soul
+My sin, oh, the bliss of this glorious thought!
+My sin, not in part but the whole
+Is nailed to the cross, and I bear it no more
+Praise the Lord, praise the Lord, o my soul!
+It is well (it is well)
+With my soul (with my soul)
+It is well, it is well with my soul
+It is well (it is well)
+With my soul (with my soul)
+It is well, it is well with my soul.`
+  },
+   {
+    id: 'wakuabudiwa',
+    title: 'Wakuabudiwa',
+    artist: 'Christina Shusho',
+    lyrics: `Wakuabudiwa,
+wakuheshimiwa ni wewe Mungu (You are worthy of worship and Honor)
+Wakupewa sifa, na utukufu,
+ni wewe Mungu (worthy to receive all praise and glory)
+Mungu mwenye nguvu,
+wastahili heshima zote (Mighty God, you deserve all honor)
+Hakuna mwingine wa kulinganishwa na
+wewe Mungu (There's no one like you God)
+Wakuabudiwa,
+wakuheshimiwa ni wewe Mungu (You are worthy of worship and Honor)
+Wakupewa sifa, na utukufu,
+ni wewe Mungu (worthy to receive all praise and glory)
+Mungu mwenye nguvu,
+wastahili heshima zote (Mighty God, you deserve all honor)
+Hakuna mwingine wa kulinganishwa na
+wewe Mungu (There's no one like you God)
+Umesema wewe, jina lako liko liliko ni we Mungu (You're the I AM God)
+Unafanya mambo yaliyo juu ya fahamu
+zetu Mungu (You do amazing things God)
+Ukisema ndiyo, nani awezaye kupinga?
+Hakuna (If you say yes, no one can say no)
+Wewe unatupa kushinda na zaidi ya
+kushinda (You give us victory over victory)
+Unatupandisha utukufu hadi utukufu;
+Mungu (You lift us from glory to glory God)
+Umesema wewe, jina lako liko liliko ni we Mungu (You're the I AM God)
+Unafanya mambo yaliyo juu ya fahamu
+zetu Mungu (You do amazing things God)
+Ukisema ndiyo, nani awezaye kupinga?
+Hakuna (If you say yes, no one can say no)
+Wewe unatupa kushinda na zaidi ya
+kushinda (You give us victory over victory)
+Unatupandisha utukufu hadi utukufu;
+Mungu (You lift us from glory to glory God)
+Wakuabudiwa,
+wakuheshimiwa ni wewe Mungu (You are worthy of worship and Honor)
+Wakupewa sifa, na utukufu,
+ni wewe Mungu (worthy to receive all praise and glory)
+Mungu mwenye nguvu,
+wastahili heshima zote (Mighty God, you deserve all honor)
+Hakuna mwingine wa kulinganishwa na
+wewe Mungu (There's no one like you God)
+Wakuabudiwa,
+wakuheshimiwa ni wewe Mungu (You are worthy of worship and Honor)
+Wakupewa sifa, na utukufu,
+ni wewe Mungu (worthy to receive all praise and glory)
+Mungu mwenye nguvu,
+wastahili heshima zote (Mighty God, you deserve all honor)
+Hakuna mwingine wa kulinganishwa na
+wewe Mungu (There's no one like you God)
+Uzima wetu uko mikononi mwako Mungu (Our lives are in your hand God)
+Unawapa nguvu,
+wanyonge na wadhaifu Mungu (You give strength to the weak God)
+Unawanyeshea mvua wema na waovu mungu
+(You rain on the good and the evil God)
+Wanadamu nani wa kulinganishwa na
+wewe (Who is man to be compared to you?)
+Nani mwenye nguvu wa kusimama mbele
+yako Mungu (Who can stand before you?)
+Uzima wetu uko mikononi mwako Mungu (Our lives are in your hand God)
+Unawapa nguvu,
+wanyonge na wadhaifu Mungu (You give strength to the weak God)
+Unawanyeshea mvua wema na waovu mungu
+(You rain on the good and the evil God)
+Wanadamu nani wa kulinganishwa na
+wewe (Who is man to be compared to you?)
+Nani mwenye nguvu wa kusimama mbele
+yako Mungu (Who can stand before you?)
+Wakuabudiwa,
+wakuheshimiwa ni wewe Mungu (You are worthy of worship and Honor)
+Wakupewa sifa, na utukufu,
+ni wewe Mungu (worthy to receive all praise and glory)
+Mungu mwenye nguvu,
+wastahili heshima zote (Mighty God, you deserve all honor)
+Hakuna mwingine wa kulinganishwa na
+wewe Mungu (There's no one like you God)
+Wakuabudiwa,
+wakuheshimiwa ni wewe Mungu (You are worthy of worship and Honor)
+Wakupewa sifa, na utukufu,
+ni wewe Mungu (worthy to receive all praise and glory)
+Mungu mwenye nguvu,
+wastahili heshima zote (Mighty God, you deserve all honor)
+Hakuna mwingine wa kulinganishwa na
+wewe Mungu (There's no one like you God)
+Hakuna mwingine wa kulinganishwa na
+wewe Mungu (There's no one like you God)
+Bwana utukufu wako sigusi (Father I do not touch your glory)
+Bali utukufu ukurudie wewe Mungu wangu
+(But let the glory return to you my God)`, 
+  },
+  {
+    id: 'storm',
+    title: 'Praise You in This Storm',
+    artist: 'Casting Crowns',
+    lyrics: `I was sure by now
+God, You would have reached down
+And wiped our tears away
+Stepped in and saved the day
+And once again
+I say, "A-men" and it's still rainin'
+But as the thunder rolls
+I barely hear Your whisper through the rain
+"I'm with you"
+And as Your mercy falls
+I'll raise my hands and praise the God who gives
+And takes away
+And I'll praise You in this storm
+And I will lift my hands
+For You are who You are
+No matter where I am
+And every tear I've cried
+You hold in Your hand
+You never left my side
+And though my heart is torn
+I will praise You in this storm
+I remember when I stumbled in the wind
+You heard my cry, You raised me up again
+But my strength is almost gone
+How can I carry on
+If I can't find You?
+But as the thunder rolls
+I barely hear Your whisper through the rain
+"I'm with you"
+And as Your mercy falls
+I'll raise my hands and praise the God who gives
+And takes away
+And I'll praise You in this storm
+And I will lift my hands
+For You are who You are
+No matter where I am
+And every tear I've cried
+You hold in Your hand
+You never left my side
+And though my heart is torn
+I will praise You in this storm
+I lift my eyes unto the hills
+Where does my help come from?
+My help comes from the Lord
+The maker of heaven and earth
+I lift my eyes unto the hills
+Where does my help come from?
+My help comes from the Lord
+The maker of heaven and earth
+(I lift my eyes unto the hills)
+(Where does my help come from?)
+And I'll praise You in this storm
+And I will lift my hands
+For You are who You are
+No matter where I am
+Every tear I've cried
+You hold in Your hand
+You never left my side
+Though my heart is torn
+I will praise You in this storm
+And though my heart is torn
+(Though my heart is torn)
+I'll praise You in this storm
+(Praise You in this storm)`
+  },
   {
     id: 'hands',
     title: 'My Life Is in Your Hands',
@@ -85,29 +317,91 @@ With Him I know I can stand
 No matter what may come my way 
 My life is in your hands`, 
   },
-  {
-    id: 'mchungaji',
-    title: 'Bwana Ni Mchungaji Wangu',
-    artist: 'Reuben Kigame',
-    lyrics: '', // paste lyrics here
-  },
-  {
-    id: 'well',
-    title: 'It Is Well (With My Soul)',
-    artist: 'Horatio Spafford / Philip Bliss',
-    lyrics: '', // paste lyrics here
-  },
-  {
-    id: 'storm',
-    title: 'Praise You in This Storm',
-    artist: 'Casting Crowns',
-    lyrics: '', // paste lyrics here
-  },
+ 
+ 
+  
   {
     id: 'kuiko',
     title: 'Kuiko Jana',
     artist: 'Red Fourth Chorus',
-    lyrics: '', // paste lyrics here
+    lyrics:  `Bwana ni mwokozi wangu
+Tena ni kiongozi wangu
+Ananipenda leo kuliko jana
+Baraka zake hazikwishi
+Si kama binadamu habadiliki
+Ananipenda leo kuliko jana
+Kuliko jana
+Kuliko jana
+Yesu nipende leo kuliko jana
+Kuliko jana
+Kuliko jana
+Yesu nipende leo kuliko jana
+Nakuomba Mungu uwasamehe
+Wangalijua jinsi unavyonipenda mimi wasingenisema
+Na maadui wangu nawaombea maisha marefu
+Wazidi kuona ukinibariki
+Ujue binadamu ni watu wa ajabu sana
+Walimkana Yesu mara tatu kabla jogoo kuwika
+Ujue binadamu ni watu wa ajabu sana
+Walimsulubisha Yesu Messiah bila kusita
+Ooh, na
+Bwana ni mwokozi wangu
+Tena ni kiongozi wangu
+Ananipenda leo kuliko jana
+Baraka zake hazikwishi
+Si kama binadamu habadiliki
+Ananipenda leo kuliko jana
+Kuliko jana
+Kuliko jana
+Yesu nipende leo kuliko jana
+Kuliko jana
+Kuliko jana
+Yesu nipende leo kuliko jana
+Wewe ndio nategemea
+Kufa kupona baba nakutegemea (Amen)
+Chochote kitanikatsia
+Kuingia mbinguni utaniondolea (Ooh-ooh, yeah)
+Wewe ndio nategemea (Amen)
+Kufa kupona baba nakutegemea (Oh-oh)
+Chochote kitanikatsia
+Kuingia mbinguni utaniondolea (Eh, wewe ndio nategemea)
+Wewe ndio nategemea
+Kufa kupona baba nakutegemea (Eh, bwana)
+Chochote kitanikatsia
+Kuingia mbinguni utaniondolea (Eh, maisha yangu yote)
+Wewe ndio nategemea (Kwa nguvu zangu zote)
+Kufa kupona baba nakutegemea (Nakutegemea)
+Chochote kitanikatsia
+Kuingia mbinguni utaniondolea (Oh-oh-oh-oh)
+Na bwana ni mwokozi wangu
+Na tena ni mkombozi wangu
+Ananipenda leo kuliko jana
+Baraka zake hazikwishi
+Si kama binadamu habadiliki
+Ananipenda leo kuliko jana
+Kuliko jana (Kuliko jana)
+Kuliko jana
+Yesu nipende leo kuliko jana
+Kuliko jana (Kuliko jana)
+Kuliko jana (Kuliko jana)
+Yesu nipende leo kuliko jana
+Wewe ndio nategemea (Wewe)
+Kufa kupona baba nakutegemea (Wewe)
+Chochote kitanikatsia (Uh-huh)
+Kuingia mbinguni utaniondolea
+Wewe ndio nategemea (Ooh)
+Kufa kupona baba nakutegemea (Nakutegemea)
+Chochote kitanikatsia
+Kuingia mbinguni utaniondolea
+Na bwana ni mwokozi wangu (Amen)
+Tena ni mkombozi wangu (Amen)
+Ananipenda leo kuliko jana (Amen)
+Baraka zake hazikwishi (Amen)
+Si kama binadamu habadiliki (Amen)
+Ananipenda leo kuliko jana (Amen)
+Kuliko jana
+Kuliko jana
+Nipende leo kuliko jana`
   },
 ];
 
