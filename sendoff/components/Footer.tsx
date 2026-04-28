@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="w-full h-px bg-warm-300/20 mb-8" />
 
         {/* Info grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center mb-8">
           {/* Event */}
           <div>
             <p className="text-xs uppercase tracking-[0.15em] text-warm-300 mb-2 font-body">
@@ -26,18 +26,7 @@ export default function Footer() {
             <p className="text-sm text-warm-50 font-body">31st March, 2026 · 5:00 PM</p>
           </div>
 
-          {/* M-Pesa */}
-          <div>
-            <p className="text-xs uppercase tracking-[0.15em] text-warm-300 mb-2 font-body">
-              Contribute via M-Pesa
-            </p>
-            <p className="text-lg font-bold text-mpesa font-body">
-              +254 729 799 512
-            </p>
-            <p className="text-sm text-warm-50 font-body">Yvonne Maya</p>
-          </div>
-
-          {/* Goal */}
+          {/* Goal (historical) */}
           <div>
             <p className="text-xs uppercase tracking-[0.15em] text-warm-300 mb-2 font-body">
               Fundraising Goal

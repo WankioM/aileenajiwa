@@ -80,9 +80,18 @@ export default function AgendaList() {
         Schedule of Events
       </h2>
       <div className="w-16 h-[3px] bg-lavender-400 mx-auto mb-4 rounded-full" />
-      <p className="text-center text-warm-300 max-w-md mx-auto mb-12 leading-relaxed">
-        A gathering to celebrate Aileen&rsquo;s life, give thanks, and support the family.
+      <p className="text-center text-warm-300 max-w-md mx-auto mb-8 leading-relaxed">
+        These gatherings have all taken place.
       </p>
+
+      {/* Gratitude note */}
+      <div className="max-w-xl mx-auto mb-12 px-6 py-5 border border-lavender-200 bg-lavender-100/30 rounded-xl">
+        <p className="text-center text-sm text-warm-900 leading-relaxed italic font-body">
+          To everyone who came, who prayed, who gave, and who walked beside us
+          through this season &mdash; the family is deeply grateful. Aileen
+          was carried home by your love.
+        </p>
+      </div>
 
       {/* Timeline */}
       <div className="relative">
@@ -201,16 +210,6 @@ export default function AgendaList() {
                                   </div>
                                 ))}
                               </div>
-
-                              <a
-                                href="/service"
-                                className="inline-flex items-center gap-2 mt-4 text-sm font-bold text-lavender-400 hover:text-lavender-600 transition-colors"
-                              >
-                                View Full Order of Service &amp; Hymns
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                              </a>
                             </div>
                           )}
                         </div>
